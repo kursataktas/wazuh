@@ -145,15 +145,6 @@
         "path": "api/api/controllers",
         "files": [
             {
-                "name": "active_response_controller.py",
-                "tag": "active",
-                "tests": [
-                    "test_active_response_endpoints.tavern.yaml",
-                    "test_rbac_black_active_response_endpoints.tavern.yaml",
-                    "test_rbac_white_active_response_endpoints.tavern.yaml"
-                ]
-            },
-            {
                 "name": "agent_controller.py",
                 "tag": "agent",
                 "tests": [
@@ -334,15 +325,6 @@
         "path": "api/api/models",
         "files": [
             {
-                "name": "active_response_model.py",
-                "tag": "active",
-                "tests": [
-                    "test_active_response_endpoints.tavern.yaml",
-                    "test_rbac_black_active_response_endpoints.tavern.yaml",
-                    "test_rbac_white_active_response_endpoints.tavern.yaml"
-                ]
-            },
-            {
                 "name": "agent_added_model.py",
                 "tag": "agent",
                 "tests": [
@@ -465,15 +447,6 @@
     {
         "path": "framework/wazuh",
         "files": [
-            {
-                "name": "active_response.py",
-                "tag": "active",
-                "tests": [
-                    "test_active_response_endpoints.tavern.yaml",
-                    "test_rbac_black_active_response_endpoints.tavern.yaml",
-                    "test_rbac_white_active_response_endpoints.tavern.yaml"
-                ]
-            },
             {
                 "name": "agent.py",
                 "tag": "agent",
@@ -633,15 +606,6 @@
                     "test_agent_POST_endpoints.tavern.yaml",
                     "test_agent_PUT_endpoints.tavern.yaml",
                     "test_cluster_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "active_response.py",
-                "tag": "active",
-                "tests": [
-                    "test_active_response_endpoints.tavern.yaml",
-                    "test_rbac_black_active_response_endpoints.tavern.yaml",
-                    "test_rbac_white_active_response_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -1367,7 +1331,6 @@
                 "name": "rbac_catalog.yml",
                 "tag": "rbac",
                 "tests": [
-                    "test_rbac_black_active_response_endpoints.tavern.yaml",
                     "test_rbac_black_agent_endpoints.tavern.yaml",
                     "test_rbac_black_cdb_list_endpoints.tavern.yaml",
                     "test_rbac_black_ciscat_endpoints.tavern.yaml",
@@ -1384,7 +1347,6 @@
                     "test_rbac_black_security_endpoints.tavern.yaml",
                     "test_rbac_black_syscollector_endpoints.tavern.yaml",
                     "test_rbac_black_task_endpoints.tavern.yaml",
-                    "test_rbac_white_active_response_endpoints.tavern.yaml",
                     "test_rbac_white_agent_endpoints.tavern.yaml",
                     "test_rbac_white_all_endpoints.tavern.yaml",
                     "test_rbac_white_cdb_list_endpoints.tavern.yaml",
@@ -1565,13 +1527,6 @@
                 ]
             },
             {
-                "name": "test_active_response_endpoints.tavern.yaml",
-                "tag": "test",
-                "tests": [
-                    "test_active_response_endpoints.tavern.yaml"
-                ]
-            },
-            {
                 "name": "test_agent_DELETE_endpoints.tavern.yaml",
                 "tag": "test",
                 "tests": [
@@ -1667,13 +1622,6 @@
                 "tag": "test",
                 "tests": [
                     "test_overview_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "test_rbac_black_active_response_endpoints.tavern.yaml",
-                "tag": "test",
-                "tests": [
-                    "test_rbac_black_active_response_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -1786,13 +1734,6 @@
                 "tag": "test",
                 "tests": [
                     "test_rbac_black_task_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "test_rbac_white_active_response_endpoints.tavern.yaml",
-                "tag": "test",
-                "tests": [
-                    "test_rbac_white_active_response_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -2049,22 +1990,6 @@
             {
                 "name": "entrypoint.sh",
                 "tag": "entrypoint",
-                "tests": [
-                    "test_agent_DELETE_endpoints.tavern.yaml",
-                    "test_agent_GET_endpoints.tavern.yaml",
-                    "test_agent_POST_endpoints.tavern.yaml",
-                    "test_agent_PUT_endpoints.tavern.yaml",
-                    "test_cluster_endpoints.tavern.yaml"
-                ]
-            }
-        ]
-    },
-    {
-        "path": "api/test/integration/env/configurations/active/agent/configuration_files",
-        "files": [
-            {
-                "name": "agent3_config.sh",
-                "tag": "agent3",
                 "tests": [
                     "test_agent_DELETE_endpoints.tavern.yaml",
                     "test_agent_GET_endpoints.tavern.yaml",
@@ -2365,25 +2290,6 @@
                     "test_agent_POST_endpoints.tavern.yaml",
                     "test_agent_PUT_endpoints.tavern.yaml",
                     "test_cluster_endpoints.tavern.yaml"
-                ]
-            }
-        ]
-    },
-    {
-        "path": "api/test/integration/env/configurations/rbac/active",
-        "files": [
-            {
-                "name": "black_config.yaml",
-                "tag": "black",
-                "tests": [
-                    "test_rbac_black_active_response_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "white_config.yaml",
-                "tag": "white",
-                "tests": [
-                    "test_rbac_white_active_response_endpoints.tavern.yaml"
                 ]
             }
         ]
