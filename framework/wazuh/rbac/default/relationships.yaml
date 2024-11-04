@@ -26,7 +26,6 @@ relationships:
         - lists_all
         - rootcheck_all
         - rules_all
-        - mitre_read
         - sca_read
         - syscheck_all
         - syscollector_read
@@ -46,7 +45,6 @@ relationships:
         - lists_read
         - rootcheck_read
         - rules_read
-        - mitre_read
         - sca_read
         - syscheck_read
         - syscollector_read

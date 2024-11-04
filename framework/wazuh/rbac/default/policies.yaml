@@ -163,16 +163,6 @@ default_policies:
           - '*:*:*'
         effect: allow
 
-  mitre_read:
-    description: Allow read MITRE database information.
-    policies:
-      mitre:
-        actions:
-          - mitre:read
-        resources:
-          - '*:*:*'
-        effect: allow
-
   lists_read:
     description: Allow reading all lists paths in the system.
     policies:
