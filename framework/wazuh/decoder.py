@@ -18,7 +18,6 @@ from wazuh.core.results import AffectedItemsWazuhResult
 from wazuh.core.rule import format_rule_decoder_file
 from wazuh.core.utils import process_array, safe_move, validate_wazuh_xml, \
     upload_file, to_relative_path, full_copy
-from wazuh.core.logtest import validate_dummy_logtest
 from wazuh.rbac.decorators import expose_resources
 
 
@@ -364,15 +363,6 @@ def upload_decoder_file(filename: str, content: str, relative_dirname: str = Non
                                 relative_dirname=relative_dirname)
 
         upload_file(content, to_relative_path(full_path))
-
-        # After uploading the file, validate it using a logtest dummy msg
-        try:
-            validate_dummy_logtest()
-        except WazuhError as exc:
-            if not overwrite and exists(full_path):
-                delete_decoder_file(filename=filename, relative_dirname=relative_dirname)
-
-            raise exc
 
         result.affected_items.append(to_relative_path(full_path))
         result.total_affected_items = len(result.affected_items)

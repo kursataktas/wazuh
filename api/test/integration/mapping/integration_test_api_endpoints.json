@@ -227,15 +227,6 @@
                 ]
             },
             {
-                "name": "logtest_controller.py",
-                "tag": "logtest",
-                "tests": [
-                    "test_logtest_endpoints.tavern.yaml",
-                    "test_rbac_black_logtest_endpoints.tavern.yaml",
-                    "test_rbac_white_logtest_endpoints.tavern.yaml"
-                ]
-            },
-            {
                 "name": "manager_controller.py",
                 "tag": "manager",
                 "tests": [
@@ -430,15 +421,6 @@
                 ]
             },
             {
-                "name": "logtest_model.py",
-                "tag": "logtest",
-                "tests": [
-                    "test_logtest_endpoints.tavern.yaml",
-                    "test_rbac_black_logtest_endpoints.tavern.yaml",
-                    "test_rbac_white_logtest_endpoints.tavern.yaml"
-                ]
-            },
-            {
                 "name": "security_model.py",
                 "tag": "security",
                 "tests": [
@@ -547,15 +529,6 @@
                     "test_event_endpoints.tavern.yaml",
                     "test_rbac_black_event_endpoints.tavern.yaml",
                     "test_rbac_white_event_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "logtest.py",
-                "tag": "logtest",
-                "tests": [
-                    "test_logtest_endpoints.tavern.yaml",
-                    "test_rbac_black_logtest_endpoints.tavern.yaml",
-                    "test_rbac_white_logtest_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -732,15 +705,6 @@
                     "test_agent_POST_endpoints.tavern.yaml",
                     "test_agent_PUT_endpoints.tavern.yaml",
                     "test_cluster_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "logtest.py",
-                "tag": "logtest",
-                "tests": [
-                    "test_logtest_endpoints.tavern.yaml",
-                    "test_rbac_black_logtest_endpoints.tavern.yaml",
-                    "test_rbac_white_logtest_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -1411,7 +1375,6 @@
                     "test_rbac_black_decoder_endpoints.tavern.yaml",
                     "test_rbac_black_event_endpoints.tavern.yaml",
                     "test_rbac_black_experimental_endpoints.tavern.yaml",
-                    "test_rbac_black_logtest_endpoints.tavern.yaml",
                     "test_rbac_black_manager_endpoints.tavern.yaml",
                     "test_rbac_black_mitre_endpoints.tavern.yaml",
                     "test_rbac_black_overview_endpoints.tavern.yaml",
@@ -1430,7 +1393,6 @@
                     "test_rbac_white_decoder_endpoints.tavern.yaml",
                     "test_rbac_white_event_endpoints.tavern.yaml",
                     "test_rbac_white_experimental_endpoints.tavern.yaml",
-                    "test_rbac_white_logtest_endpoints.tavern.yaml",
                     "test_rbac_white_manager_endpoints.tavern.yaml",
                     "test_rbac_white_mitre_endpoints.tavern.yaml",
                     "test_rbac_white_overview_endpoints.tavern.yaml",
@@ -1687,13 +1649,6 @@
                 ]
             },
             {
-                "name": "test_logtest_endpoints.tavern.yaml",
-                "tag": "test",
-                "tests": [
-                    "test_logtest_endpoints.tavern.yaml"
-                ]
-            },
-            {
                 "name": "test_manager_endpoints.tavern.yaml",
                 "tag": "test",
                 "tests": [
@@ -1768,13 +1723,6 @@
                 "tag": "test",
                 "tests": [
                     "test_rbac_black_experimental_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "test_rbac_black_logtest_endpoints.tavern.yaml",
-                "tag": "test",
-                "tests": [
-                    "test_rbac_black_logtest_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -1901,13 +1849,6 @@
                 "tag": "test",
                 "tests": [
                     "test_rbac_white_experimental_endpoints.tavern.yaml"
-                ]
-            },
-            {
-                "name": "test_rbac_white_logtest_endpoints.tavern.yaml",
-                "tag": "test",
-                "tests": [
-                    "test_rbac_white_logtest_endpoints.tavern.yaml"
                 ]
             },
             {
@@ -2576,18 +2517,6 @@
                 "tag": "white",
                 "tests": [
                     "test_rbac_white_experimental_endpoints.tavern.yaml"
-                ]
-            }
-        ]
-    },
-    {
-        "path": "api/test/integration/env/configurations/rbac/logtest",
-        "files": [
-            {
-                "name": "black_config.yaml",
-                "tag": "black",
-                "tests": [
-                    "test_rbac_black_logtest_endpoints.tavern.yaml"
                 ]
             }
         ]
