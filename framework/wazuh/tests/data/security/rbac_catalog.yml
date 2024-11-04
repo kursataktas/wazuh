@@ -523,48 +523,6 @@ get_rbac_actions:
         related_endpoints:
           - GET /sca/{agent_id}
           - GET /sca/{agent_id}/checks/{policy_id}
-      syscheck:run:
-        description: Run agents syscheck scan
-        resources:
-          - agent:id
-          - agent:group
-        example:
-          actions:
-            - syscheck:run
-          resources:
-            - agent:id:*
-          effect: allow
-        related_endpoints:
-          - PUT /syscheck
-      syscheck:read:
-        description: Access information from agents syscheck database
-        resources:
-          - agent:id
-          - agent:group
-        example:
-          actions:
-            - syscheck:read
-          resources:
-            - agent:id:011
-            - agent:group:us-west
-          effect: allow
-        related_endpoints:
-          - GET /syscheck/{agent_id}
-          - GET /syscheck/{agent_id}/last_scan
-      syscheck:clear:
-        description: Clear the agents syscheck database
-        resources:
-          - agent:id
-          - agent:group
-        example:
-          actions:
-            - syscheck:clear
-          resources:
-            - agent:id:*
-          effect: deny
-        related_endpoints:
-          - DELETE /syscheck/{agent_id}
-          - DELETE /experimental/syscheck
       decoders:read:
         description: Read decoders files
         resources:

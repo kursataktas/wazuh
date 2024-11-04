@@ -10,7 +10,6 @@ from connexion.lifecycle import ConnexionResponse
 
 import wazuh.ciscat as ciscat
 import wazuh.rootcheck as rootcheck
-import wazuh.syscheck as syscheck
 import wazuh.syscollector as syscollector
 from api import configuration
 from api.controllers.util import json_response

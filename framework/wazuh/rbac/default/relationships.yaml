@@ -28,7 +28,6 @@ relationships:
         - rules_all
         - mitre_read
         - sca_read
-        - syscheck_all
         - syscollector_read
         - logtest_all
         - task_status
@@ -48,7 +47,6 @@ relationships:
         - rules_read
         - mitre_read
         - sca_read
-        - syscheck_read
         - syscollector_read
       rule_ids: []
 

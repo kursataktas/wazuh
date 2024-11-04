@@ -59,9 +59,9 @@ test_result = [
 @patch('wazuh.core.common.CLIENT_KEYS', new=os.path.join(test_agent_path, 'client.keys'))
 @patch('wazuh.rootcheck.WazuhDBQueryAgents.__exit__')
 @patch('wazuh.rootcheck.WazuhDBQueryAgents.__init__', return_value=None)
-@patch('wazuh.syscheck.WazuhQueue._connect')
-@patch('wazuh.syscheck.WazuhQueue.send_msg_to_agent', side_effect=set_callable_list)
-@patch('wazuh.syscheck.WazuhQueue.close')
+@patch('wazuh.rootcheck.WazuhQueue._connect')
+@patch('wazuh.rootcheck.WazuhQueue.send_msg_to_agent', side_effect=set_callable_list)
+@patch('wazuh.rootcheck.WazuhQueue.close')
 @pytest.mark.skip('Remove tested function or update it to use the indexer.')
 def test_rootcheck_run(close_mock, send_mock, connect_mock, agent_init__mock, agent_exit__mock,
                        agent_list, failed_items, status_list, expected_result):
