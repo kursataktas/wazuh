@@ -450,20 +450,6 @@ get_rbac_actions:
         related_endpoints:
           - PUT /rules/files/{filename}
           - DELETE /rules/files/{filename}
-      sca:read:
-        description: Access agents security configuration assessment
-        resources:
-          - agent:id
-          - agent:group
-        example:
-          actions:
-            - sca:read
-          resources:
-            - agent:id:*
-          effect: allow
-        related_endpoints:
-          - GET /sca/{agent_id}
-          - GET /sca/{agent_id}/checks/{policy_id}
       syscheck:run:
         description: Run agents syscheck scan
         resources:

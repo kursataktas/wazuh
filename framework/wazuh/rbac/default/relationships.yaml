@@ -25,7 +25,6 @@ relationships:
         - decoders_all
         - lists_all
         - rules_all
-        - sca_read
         - syscheck_all
         - syscollector_read
         - logtest_all
@@ -43,7 +42,6 @@ relationships:
         - decoders_read
         - lists_read
         - rules_read
-        - sca_read
         - syscheck_read
         - syscollector_read
       rule_ids: []
