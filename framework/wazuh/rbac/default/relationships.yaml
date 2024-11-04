@@ -29,7 +29,6 @@ relationships:
         - mitre_read
         - sca_read
         - syscollector_read
-        - task_status
         - events_ingest
       rule_ids:
         - wui_elastic_admin
