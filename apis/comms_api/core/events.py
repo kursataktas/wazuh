@@ -2,7 +2,7 @@ import asyncio
 from typing import List
 
 from fastapi import Request
-from uuid import UUID
+from pydantic import TypeAdapter
 
 from comms_api.models.events import StatefulEvents
 from wazuh.core.engine.base import APPLICATION_JSON
@@ -17,16 +17,13 @@ HTTP_STATUS_OK = 200
 HTTP_STATUS_PARTIAL_CONTENT = 206
 
 
-async def create_stateful_events(
-    events: StatefulEvents,
-    batcher_queue: MuxDemuxQueue
-) -> List[TaskResult]:
+async def send_stateful_events(events: StatefulEvents, batcher_queue: MuxDemuxQueue) -> List[TaskResult]:
     """Post new events to the batcher.
 
     Parameters
     ----------
-    events : Events
-        List of events to be posted.
+    events : StatefulEvents
+        Stateful events.
     batcher_queue : MuxDemuxQueue
         Queue used by the BatcherClient for processing.
 
@@ -36,12 +33,7 @@ async def create_stateful_events(
         List of results from the bulk tasks.
     """
     batcher_client = BatcherClient(queue=batcher_queue)
-    return await send_events(
-        agent_metadata=events.agent_metadata,
-        headers=events.headers,
-        events=events.events,
-        batcher_client=batcher_client,
-    )
+    return await send_events(events=events, batcher_client=batcher_client)
 
 
 async def send_stateless_events(request: Request) -> None:
@@ -76,6 +68,8 @@ async def parse_stateful_events(request: Request) -> StatefulEvents:
     Raises
     ------
     WazuhError(2708)
+        Invalid request body headers.
+    WazuhError(2709)
         Invalid request body structure.
     
     Returns
@@ -89,7 +83,7 @@ async def parse_stateful_events(request: Request) -> StatefulEvents:
 
     i: int = 0
     headers: List[Header] = []
-    events = []
+    data: List[StatefulEvent] = []
 
     async for chunk in request.stream():
         if len(chunk) == 0:
@@ -107,7 +101,7 @@ async def parse_stateful_events(request: Request) -> StatefulEvents:
             if i == 0:
                 agent_metadata = AgentMetadata.model_validate_json(part)
             elif i % 2 == 0:
-                events.append(StatefulEvent.model_validate_json(b'{"data": %b}' % part))
+                data.append(TypeAdapter(StatefulEvent).validate_json(part))
             else:
                 header = Header.model_validate_json(part)
                 headers.append(header)
@@ -117,29 +111,16 @@ async def parse_stateful_events(request: Request) -> StatefulEvents:
 
             i += 1
 
-    return StatefulEvents(
-        agent_metadata=agent_metadata,
-        headers=headers,
-        events=events
-    )
+    return StatefulEvents(agent_metadata=agent_metadata, headers=headers, data=data)
 
 
-async def send_events(
-    agent_metadata: AgentMetadata,
-    headers: List[Header],
-    events: List[StatefulEvent],
-    batcher_client: BatcherClient
-) -> List[TaskResult]:
+async def send_events(events: StatefulEvents, batcher_client: BatcherClient) -> List[TaskResult]:
     """Send events to the batcher.
 
     Parameters
     ----------
-    agent_metadata : AgentMetadata
-        Agent metadata.
-    headers : List[Header]
-        List of events headers.
-    events : List[StatefulEvent]
-        List of events.
+    events : StatefulEvents
+        Stateful events.
     batcher_client : BatcherClient
         Client responsible for sending the events to the batcher and managing responses.
 
@@ -148,16 +129,18 @@ async def send_events(
     List[TaskResult]
         Indexer response for each one of the bulk tasks.
     """
-    tasks = []
+    tasks: List[asyncio.Task] = []
+    i: int = 0
 
     # Sends the events to the batcher
-    for i, header in enumerate(headers):
-        batcher_client.send_operation(
-            agent_metadata=agent_metadata,
-            header=header,
-            event=events[i] if header.operation != Operation.DELETE else None
-        )
+    for header in events.headers:
+        data = None
+        if header.operation != Operation.DELETE:
+            data = events.data[i]
+            i += 1
 
+        batcher_client.send_event(agent_metadata=events.agent_metadata, header=header, data=data)
+            
         task = asyncio.create_task(
             (lambda u: batcher_client.get_response(u))(header.id)
         )
@@ -182,6 +165,7 @@ def parse_tasks_results(tasks_results: List[dict]) -> List[TaskResult]:
         Tasks results object list.
     """
     results: List[TaskResult] = []
+
     for result in tasks_results:
         status = result[IndexerKey.STATUS]
         if status >= HTTP_STATUS_OK and status <= HTTP_STATUS_PARTIAL_CONTENT:
