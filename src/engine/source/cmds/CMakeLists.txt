@@ -1,7 +1,7 @@
 add_library(cmds STATIC
     src/graph.cpp
     src/start.cpp
-    src/tester.cpp
+    # src/tester.cpp
     src/kvdb.cpp
     src/catalog.cpp
     src/config.cpp

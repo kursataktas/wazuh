@@ -12,7 +12,7 @@
 #include <cmds/policy.hpp>
 #include <cmds/router.hpp>
 #include <cmds/start.hpp>
-#include <cmds/tester.hpp>
+// #include <cmds/tester.hpp> TODO: Fix tester
 
 namespace
 {
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 
     // Configure each subcommand
     cmd::server::configure(app);
-    cmd::tester::configure(app);
+    // cmd::tester::configure(app);
     cmd::graph::configure(app);
     cmd::kvdb::configure(app);
     cmd::catalog::configure(app);
