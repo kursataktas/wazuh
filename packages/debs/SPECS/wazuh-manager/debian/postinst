@@ -162,6 +162,7 @@ case "$1" in
 
     # More files
     touch ${DIR}/etc/client.keys
+    chown root:${GROUP} ${DIR}/etc/client.keys
 
     touch ${DIR}/logs/active-responses.log
     touch ${DIR}/logs/integrations.log
